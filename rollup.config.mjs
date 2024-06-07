@@ -23,12 +23,21 @@ export default [
       plugins: [
          resolve(),
          commonjs(),
-         typescript({ tsconfig: './tsconfig.json', exclude: ['**/*.test.tsx', '**/*.test.ts', '**/*.stories.ts'] }),
-         postcss({ extensions: ['.css'], inject: true, extract: false }),
+         typescript({
+            tsconfig: './tsconfig.json',
+            declaration: true,
+            declarationDir: 'dist',
+            exclude: ['**/*.test.tsx', '**/*.test.ts', '**/*.stories.ts']
+         }),
+         postcss({
+            extensions: ['.css'],
+            inject: true,
+            extract: false
+         }),
       ],
    },
    {
-      input: 'dist/esm/types/index.d.ts',
+      input: 'dist/esm/index.d.ts',
       output: [{ file: 'dist/index.d.ts', format: 'esm' }],
       plugins: [dts()],
       external: [/\.css$/],
