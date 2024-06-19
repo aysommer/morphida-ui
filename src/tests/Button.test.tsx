@@ -6,7 +6,7 @@ describe("Button", () => {
    afterEach(() => cleanup());
 
    it("Renders", () => {
-      render(<Button data-testid="btn" />);
+      render(<Button data-testid="btn" colorScheme="green" />);
       const button = screen.getByTestId("btn");
 
       expect(button).toBeInTheDocument();

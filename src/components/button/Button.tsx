@@ -1,4 +1,5 @@
 import type { ButtonProps } from "./types";
+import { getBackgroundColor, getFontColor } from "../../styled-system/utils";
 import { clsx } from "clsx";
 
 import "./Button.css";
@@ -6,11 +7,16 @@ import "./Button.css";
 /**
  * Base button.
  */
-const Button: React.FC<ButtonProps> = ({ children, className, ...other }) => {
-   const computedClassName = clsx("mphd-button", className);
+const Button: React.FC<ButtonProps> = ({ children, className, style, colorScheme, ...other }) => {
+   const computedClassName: string = clsx("mphd-button", className);
+   const computedStyle: React.CSSProperties = {
+      ...style,
+      color: getFontColor(colorScheme),
+      backgroundColor: getBackgroundColor(colorScheme),
+   };
 
    return (
-      <button className={computedClassName} {...other}>
+      <button {...other} className={computedClassName} style={computedStyle}>
          {children}
       </button>
    );
